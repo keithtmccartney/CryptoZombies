@@ -9,4 +9,5 @@ contract ZombieFactory {
     //The uint data type is an unsigned integer, meaning its value must be non-negative. There's also an int data type for signed integers
     //This will be stored permanently in the blockchain
     uint dnaDigits = 16;
+    uint dnsModulus = 10 ** dnaDigits;
 }
