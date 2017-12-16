@@ -34,4 +34,7 @@ contract ZombieFactory {
         /*zombies.push(Zombie("Satoshi", 172));*/
         zombies.push(Zombie(_name, _dna));
     }
+
+    function _generateRandomDna(string _str) private view returns (uint) {
+    }
 }
