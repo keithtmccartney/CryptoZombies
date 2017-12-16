@@ -16,4 +16,9 @@ contract ZombieFactory {
         string name;
         uint dna;
     }
+
+    //Remember that state variables are stored permanently in the blockchain?
+    //So creating a dynamic array of structs like this can be useful for storing structured data in your contract, kind of like a database
+    //You can declare an array as public, and Solidity will automatically create a getter method for it
+    Zombie[] public zombies;
 }
