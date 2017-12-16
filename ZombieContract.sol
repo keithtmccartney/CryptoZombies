@@ -9,7 +9,7 @@ contract ZombieFactory {
     //The uint data type is an unsigned integer, meaning its value must be non-negative. There's also an int data type for signed integers
     //This will be stored permanently in the blockchain
     uint dnaDigits = 16;
-    uint dnsModulus = 10 ** dnaDigits;
+    uint dnaModulus = 10 ** dnaDigits;
 
     //Structs allow you to create more complicated data types that have multiple properties
     struct Zombie {
@@ -36,5 +36,9 @@ contract ZombieFactory {
     }
 
     function _generateRandomDna(string _str) private view returns (uint) {
+        // start here
+        uint rand = uint(keccak256(_str));
+
+        return rand % dnaModulus;
     }
 }
