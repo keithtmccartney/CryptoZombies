@@ -35,10 +35,18 @@ contract ZombieFactory {
         zombies.push(Zombie(_name, _dna));
     }
 
+    //Ethereum has the hash function keccak256 built in, which is a version of SHA3.
+    //A hash function basically maps an input string into a random 256-bit hexidecimal number. A slight change in the string will cause a large change in the hash
     function _generateRandomDna(string _str) private view returns (uint) {
-        // start here
         uint rand = uint(keccak256(_str));
 
         return rand % dnaModulus;
+    }
+
+    //We're going to create a public function that takes an input, the zombie's name, and uses the name to create a zombie with random DNA
+    function createRandomZombie(string _name) public {
+        uint randDna = _generateRandomDna(_name);
+
+        _createZombie(_name, randDna);
     }
 }
