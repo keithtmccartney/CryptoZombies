@@ -21,4 +21,8 @@ contract ZombieFactory {
     //So creating a dynamic array of structs like this can be useful for storing structured data in your contract, kind of like a database
     //You can declare an array as public, and Solidity will automatically create a getter method for it
     Zombie[] public zombies;
+
+    //It's convention (but not required) to start function parameter variable names with an underscore (_) in order to differentiate them from global variables
+    function createZombie(string _name, uint _dna) public {
+    }
 }
