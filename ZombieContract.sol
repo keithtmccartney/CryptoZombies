@@ -10,4 +10,10 @@ contract ZombieFactory {
     //This will be stored permanently in the blockchain
     uint dnaDigits = 16;
     uint dnsModulus = 10 ** dnaDigits;
+
+    //Structs allow you to create more complicated data types that have multiple properties
+    struct Zombie {
+        string name;
+        uint dna;
+    }
 }
