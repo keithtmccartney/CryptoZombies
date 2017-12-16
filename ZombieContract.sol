@@ -6,6 +6,11 @@ pragma solidity ^0.4.19;
 contract ZombieFactory {
     //3. Start here
 
+    //declare our event here
+    //Your app front-end could then listen for the event. A javascript implementation would look something like:
+    /*ZombieFactory.NewZombie(function(error, result) { // do something with result }*/
+    event NewZombie(uint zombieId, string name, uint dna);
+
     //The uint data type is an unsigned integer, meaning its value must be non-negative. There's also an int data type for signed integers
     //This will be stored permanently in the blockchain
     uint dnaDigits = 16;
@@ -32,7 +37,10 @@ contract ZombieFactory {
 
         //We can also combine these together and do them in one line of code to keep things clean:
         /*zombies.push(Zombie("Satoshi", 172));*/
-        zombies.push(Zombie(_name, _dna));
+        uint id = zombies.push(Zombie(_name, _dna));
+
+        // and fire it here
+        NewZombie(id, _name, _dna);
     }
 
     //Ethereum has the hash function keccak256 built in, which is a version of SHA3.
