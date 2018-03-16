@@ -12,3 +12,4 @@ Thanks goes out to Loom Network for the FREE stuff!
 Here's a permalink to my zombie(s):
 
 * https://share.cryptozombies.io/en/lesson/1/share/KΞiTH_McCartney?id=Z2l0aHVifDI1Mjg2NzU1
+* https://share.cryptozombies.io/en/lesson/2/share/K%CE%9EiTH_McCartney?id=Z2l0aHVifDI1Mjg2NzU1
