@@ -4,6 +4,10 @@ import "./zombieattack.sol";
 import "./erc721.sol";
 import "./safemath.sol";
 
+/// @title A contract that manages transfering zombie ownership
+/// @author Keith McCartney
+/// @dev Compliant with OpenZeppelin's implementation of the ERC721 spec draft
+
 contract ZombieOwnership is ZombieAttack, ERC721 {
 
   using SafeMath for uint256;
