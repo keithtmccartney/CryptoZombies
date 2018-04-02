@@ -6,31 +6,41 @@
         <title>CryptoZombies front-end</title>
 
         <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script language="javascript" type="text/javascript" src="./scripts/web3.min.js"></script>
-        <script language="javascript" type="text/javascript" src="./abi/cryptozombies_abi.js"></script>
+        <script language="javascript" type="text/javascript" src="web3.min.js"></script>
+        <script language="javascript" type="text/javascript" src="cryptozombies_abi.js"></script>
     </head>
 
     <body>
-
         <script>
             var cryptoZombies;
+            // 1. declare `userAccount` here
+            var userAccount;
 
             function startApp() {
                 var cryptoZombiesAddress = "YOUR_CONTRACT_ADDRESS";
 
                 cryptoZombies = new web3js.eth.Contract(cryptoZombiesABI, cryptoZombiesAddress);
+
+                // 2. Create `setInterval` code here
+                var accountInterval = setInterval(function () {
+                    // Check if account has changed
+                    if (web3.eth.accounts[0] !== userAccount) {
+                        userAccount = web3.eth.accounts[0];
+                        // Call some function to update the UI with the new account
+                        getZombiesByOwner(userAccount)
+                            .then(displayZombies);
+                    }
+                }, 100);
             }
 
             function getZombieDetails(id) {
                 return cryptoZombies.methods.zombies(id).call()
             }
 
-            // 1. Define `zombieToOwner` here
             function zombieToOwner(id) {
                 return cryptoZombies.methods.zombieToOwner(id).call()
             }
 
-            // 2. Define `getZombiesByOwner` here
             function getZombiesByOwner(owner) {
                 return cryptoZombies.methods.getZombiesByOwner(owner).call()
             }
