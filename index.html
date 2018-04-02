@@ -2,21 +2,37 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+
         <title>CryptoZombies front-end</title>
+
         <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script language="javascript" type="text/javascript" src="./scripts/web3.min.js"></script>
         <script language="javascript" type="text/javascript" src="./abi/cryptozombies_abi.js"></script>
     </head>
 
     <body>
+
         <script>
-            // 2. Start code here
             var cryptoZombies;
 
             function startApp() {
                 var cryptoZombiesAddress = "YOUR_CONTRACT_ADDRESS";
 
                 cryptoZombies = new web3js.eth.Contract(cryptoZombiesABI, cryptoZombiesAddress);
+            }
+
+            function getZombieDetails(id) {
+                return cryptoZombies.methods.zombies(id).call()
+            }
+
+            // 1. Define `zombieToOwner` here
+            function zombieToOwner(id) {
+                return cryptoZombies.methods.zombieToOwner(id).call()
+            }
+
+            // 2. Define `getZombiesByOwner` here
+            function getZombiesByOwner(owner) {
+                return cryptoZombies.methods.getZombiesByOwner(owner).call()
             }
 
             window.addEventListener('load', function () {
