@@ -11,9 +11,10 @@
     </head>
 
     <body>
+        <div id="zombies"></div>
+
         <script>
             var cryptoZombies;
-            // 1. declare `userAccount` here
             var userAccount;
 
             function startApp() {
@@ -21,16 +22,39 @@
 
                 cryptoZombies = new web3js.eth.Contract(cryptoZombiesABI, cryptoZombiesAddress);
 
-                // 2. Create `setInterval` code here
                 var accountInterval = setInterval(function () {
                     // Check if account has changed
                     if (web3.eth.accounts[0] !== userAccount) {
                         userAccount = web3.eth.accounts[0];
-                        // Call some function to update the UI with the new account
+                        // Call a function to update the UI with the new account
                         getZombiesByOwner(userAccount)
                             .then(displayZombies);
                     }
                 }, 100);
+            }
+
+            function displayZombies(ids) {
+                // Start here
+                $("#zombies").empty();
+
+                for (id of ids) {
+                    // Look up zombie details from our contract. Returns a `zombie` object
+                    getZombieDetails(id)
+                        .then(function (zombie) {
+                            // Using ES6's "template literals" to inject variables into the HTML.
+                            // Append each one to our #zombies div
+                            $("#zombies").append(`<div class="zombie">
+                <ul>
+                    <li>Name: ${zombie.name}</li>
+                    <li>DNA: ${zombie.dna}</li>
+                    <li>Level: ${zombie.level}</li>
+                    <li>Wins: ${zombie.winCount}</li>
+                    <li>Losses: ${zombie.lossCount}</li>
+                    <li>Ready Time: ${zombie.readyTime}</li>
+                </ul>
+                </div>`);
+                        });
+                }
             }
 
             function getZombieDetails(id) {
